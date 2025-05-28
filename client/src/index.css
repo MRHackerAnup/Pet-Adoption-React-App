@@ -1,0 +1,375 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 340 35% 97%;
+    --foreground: 340 60% 20%;
+    --muted: 340 25% 95%;
+    --muted-foreground: 340 40% 40%;
+    --border: 340 35% 90%;
+    --input: 340 35% 90%;
+    --ring: 340 85% 55%;
+    --radius: 1.0rem;
+
+    --primary: 340 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 260 80% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 180 85% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 90% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --card: 340 30% 99%;
+    --card-foreground: 340 60% 20%;
+    --popover: 340 30% 99%;
+    --popover-foreground: 340 60% 20%;
+
+    --sidebar-background: 340 25% 98%;
+    --sidebar-foreground: 340 60% 20%;
+    --sidebar-primary: 340 85% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 180 85% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 340 35% 90%;
+    --sidebar-ring: 340 85% 55%;
+
+    --chart-1: 340 85% 55%;
+    --chart-2: 260 80% 60%;
+    --chart-3: 180 85% 45%;
+    --chart-4: 25 95% 60%;
+    --chart-5: 60 95% 60%;
+  }
+
+  .dark {
+    --background: 340 35% 12%;
+    --foreground: 340 25% 96%;
+    --muted: 340 35% 18%;
+    --muted-foreground: 340 25% 80%;
+    --border: 340 35% 25%;
+    --input: 340 35% 25%;
+    --ring: 340 85% 60%;
+    --radius: 1.0rem;
+
+    --primary: 340 85% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 260 80% 65%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 180 85% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 90% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --card: 340 35% 15%;
+    --card-foreground: 340 25% 96%;
+    --popover: 340 35% 15%;
+    --popover-foreground: 340 25% 96%;
+
+    --sidebar-background: 340 40% 15%;
+    --sidebar-foreground: 340 25% 96%;
+    --sidebar-primary: 340 85% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 180 85% 50%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 340 35% 25%;
+    --sidebar-ring: 340 85% 60%;
+
+    --chart-1: 340 85% 60%;
+    --chart-2: 260 80% 65%;
+    --chart-3: 180 85% 50%;
+    --chart-4: 25 95% 65%;
+    --chart-5: 60 95% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.pet-card {
+  transition: all 0.3s ease;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.pet-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    transparent 80%, 
+    hsl(var(--primary) / 0.05) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 0 0 2px hsl(var(--primary) / 0.3);
+  border-color: hsl(var(--primary) / 0.5);
+}
+
+.pet-card img {
+  transition: all 0.4s ease;
+}
+
+.pet-card:hover img {
+  transform: scale(1.03);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Modern clean buttons */
+.btn-gradient {
+  background: hsl(var(--primary));
+  position: relative;
+  border: none;
+  color: white;
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.btn-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.btn-gradient:hover {
+  background: hsl(calc(var(--primary) - 5), 100%, 55%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-gradient:hover::before {
+  left: 100%;
+}
+
+.btn-gradient:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Secondary button style */
+.btn-secondary {
+  background: transparent;
+  border: 1px solid hsl(var(--primary));
+  color: hsl(var(--primary));
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: hsl(var(--primary) / 0.1);
+  transform: translateY(-2px);
+}
+
+/* Add lovely hover effects to cards */
+.hover-card {
+  transition: all 0.3s ease;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(var(--primary), 0.15);
+}
+
+/* Beautiful section backgrounds */
+.lovely-bg {
+  background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--card)));
+  position: relative;
+  overflow: hidden;
+}
+
+.lovely-bg::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, hsl(var(--primary) / 0.15), transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.lovely-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(circle, hsl(var(--secondary) / 0.15), transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+}
+
+/* Add a shimmering effect for a more lovely look */
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--primary) / 0.2),
+    hsl(var(--secondary) / 0.2),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 6s infinite linear;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Add glowing border effect */
+.glow-border {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    45deg,
+    hsl(var(--primary)),
+    hsl(var(--secondary)),
+    hsl(var(--accent)),
+    hsl(var(--primary))
+  );
+  background-size: 400% 400%;
+  animation: gradient-border 6s ease infinite;
+  border-radius: calc(var(--radius) + 2px);
+  z-index: -1;
+}
+
+@keyframes gradient-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Add pulsing effect */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px hsl(var(--primary) / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.lovely-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Add vibrant cards */
+.vibrant-card {
+  background: white;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.05),
+    0 6px 6px rgba(0, 0, 0, 0.1),
+    0 0 0 1px hsl(var(--primary) / 0.1);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  border-top: 4px solid hsl(var(--primary));
+}
+
+.vibrant-card:hover {
+  transform: translateY(-5px) perspective(1000px) rotateX(2deg);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 2px hsl(var(--primary) / 0.2);
+}
